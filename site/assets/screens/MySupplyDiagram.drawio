@@ -1,0 +1,229 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="daJ4GlvPWAMoHzFB39OR">
+    <mxGraphModel dx="2197" dy="972" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-48" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;labelPosition=center;verticalLabelPosition=top;align=left;verticalAlign=bottom;arcSize=4;" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Inbound Flow&lt;/font&gt;" vertex="1">
+          <mxGeometry height="350" width="1050" x="-460" y="-110" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;dashed=1;dashPattern=1 2;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;9A Smart Connect Queue&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 8px;&quot;&gt;(Processors will be ran in batch)&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="300" width="230" x="10" y="-70" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-40" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=right;fontSize=11;spacing=5;" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Period transfer of&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;font-size: 9px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;type MySupply&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 9px;&quot;&gt;with&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 9px;&quot;&gt;connector&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 9px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 9px;&quot;&gt;of type Raptor&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="90" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-41" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=right;spacing=5;" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Custom handler&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;(1 handler for all updates&lt;/font&gt;&lt;span style=&quot;font-size: 9px; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;Build in phase 2&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="90" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-39" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=right;spacing=5;" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;New MySupply&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;E-Invoice handler&amp;nbsp;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;(No connector needed)&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="90" y="-50" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="MySupply&lt;div&gt;Outbound queue&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="130" x="-450" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-5" edge="1" parent="1" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="-160" y="20" />
+              <mxPoint x="-260" y="20" />
+            </Array>
+            <mxPoint x="-88.2842712474619" y="51.7157287525381" as="sourcePoint" />
+            <mxPoint x="280" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-6" connectable="0" parent="-yJ8oLdzEiCnCVGNIsYe-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="GET Document" vertex="1">
+          <mxGeometry relative="1" x="-0.1318" y="1" as="geometry">
+            <mxPoint x="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-7" edge="1" parent="1" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=1.012;entryY=0.826;entryDx=0;entryDy=0;entryPerimeter=0;" target="-yJ8oLdzEiCnCVGNIsYe-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="-160" y="150" />
+              <mxPoint x="-270" y="140" />
+            </Array>
+            <mxPoint x="-92.76927682076166" y="102.93849377453319" as="sourcePoint" />
+            <mxPoint x="-310" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-8" connectable="0" parent="-yJ8oLdzEiCnCVGNIsYe-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Confirm Document download" vertex="1">
+          <mxGeometry relative="1" x="-0.1318" y="1" as="geometry">
+            <mxPoint x="-13" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-12" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-13" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-60" y="40" as="sourcePoint" />
+            <mxPoint x="-170" y="-50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;align=center;" value="Repeat until no documents in the outbound queue" vertex="1">
+          <mxGeometry height="60" width="120" x="-120" y="-70" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-15" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Inbound&lt;div&gt;E-Invoice + target format attached&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="25" y="-60" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-29" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-40" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-26">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="-20" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-46" connectable="0" parent="-yJ8oLdzEiCnCVGNIsYe-29" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;Archive target format&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 6px;&quot;&gt;linked to invoice journal&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.4747" y="1" as="geometry">
+            <mxPoint x="38" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-16" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Archive Outbound target E-Invoice" vertex="1">
+          <mxGeometry height="80" width="80" x="25" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-17" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Status&lt;div&gt;Update (phase 2)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="25" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-18" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-19" edge="1" parent="1" style="endArrow=open;html=1;rounded=0;endFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-33.24141073509304" y="50.26823415010335" as="sourcePoint" />
+            <mxPoint x="30" y="-20" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-20" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-16" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endFill=0;startArrow=open;startFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-70" y="130" as="sourcePoint" />
+            <mxPoint x="-20" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-22" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-17" style="endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endFill=0;startArrow=open;startFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-120" y="240" as="sourcePoint" />
+            <mxPoint x="-31.715728752538098" y="108.2842712474619" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-23" parent="1" style="shape=mxgraph.basic.arc;html=1;startAngle=0.2149995560386648;endAngle=0.18908447847173512;endArrow=classic;endFill=1;" value="9A SC&lt;div&gt;Distributor&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="-100" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="9A Raptor All Invoices" vertex="1">
+          <mxGeometry height="70" width="160" x="398" y="-55" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="9A Raptor Document Warehouse" vertex="1">
+          <mxGeometry height="70" width="160" x="398" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-27" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Finance and Operations" vertex="1">
+          <mxGeometry height="70" width="160" x="398" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-28" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=open;endFill=0;" target="-yJ8oLdzEiCnCVGNIsYe-24">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="-20" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-34" connectable="0" parent="-yJ8oLdzEiCnCVGNIsYe-28" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];spacing=0;" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;All invoice based on inhouse&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 6px;&quot;&gt;format of MySupply&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.1632" as="geometry">
+            <mxPoint x="19" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-32" edge="1" parent="1" style="endArrow=open;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endFill=0;" target="-yJ8oLdzEiCnCVGNIsYe-26" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="220" y="-20" as="sourcePoint" />
+            <mxPoint x="200" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-35" connectable="0" parent="-yJ8oLdzEiCnCVGNIsYe-32" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];spacing=0;" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;Archive legal document&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 6px;&quot;&gt;&amp;nbsp;or URL&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0665" y="-1" as="geometry">
+            <mxPoint x="13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-33" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-41" style="endArrow=open;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endFill=0;" target="-yJ8oLdzEiCnCVGNIsYe-27" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="70" y="150" as="sourcePoint" />
+            <mxPoint x="120" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-37" connectable="0" parent="-yJ8oLdzEiCnCVGNIsYe-33" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;font style=&quot;font-size: 6px;&quot;&gt;&amp;nbsp; Update field in FO&amp;nbsp;&amp;nbsp;&lt;/font&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.0299" as="geometry">
+            <mxPoint x="5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-50" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;labelPosition=center;verticalLabelPosition=top;align=left;verticalAlign=bottom;arcSize=4;" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Outbound Flow&lt;/font&gt;" vertex="1">
+          <mxGeometry height="350" width="1050" x="-460" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-51" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;dashed=1;dashPattern=1 2;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;9A Smart Connect Event&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 8px;&quot;&gt;(Events will be processed in batch)&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="300" width="210" x="-260" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-60" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-53" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-63">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-53" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=right;spacing=5;" value="Event: cust/proj invoice journal&amp;nbsp;&lt;div&gt;record id + table&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="-190" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-52" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="E-Invoice Generation&lt;div&gt;(Outbound)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="-250" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-61" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-54" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-63">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-54" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=right;spacing=5;" value="Event: cust/proj invoice journal&amp;nbsp;&lt;div&gt;record id + table&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="-190" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-55" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Status update Generation" vertex="1">
+          <mxGeometry height="80" width="80" x="-250" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-62" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-56" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-63">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-56" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=right;spacing=5;" value="Event: purchace invoice journal&amp;nbsp;&lt;div&gt;record id + table&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="-190" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-57" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Inbound invoices for&amp;nbsp;&lt;div&gt;E-Report&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="-250" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-68" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-59" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="9A Smart Connect Queue" vertex="1">
+          <mxGeometry height="50" width="97" x="290" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-64" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-63" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-63" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" value="Electronic reporting&lt;div&gt;generation&lt;/div&gt;&lt;div&gt;(different template per event)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="185" x="32.5" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-66" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="MySupply&lt;div&gt;Outbound queue&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="97" x="461" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-74" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-69" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-69" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="F&amp;amp;O Invoice journal" vertex="1">
+          <mxGeometry height="30" width="160" x="-450" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-75" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-70" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-70" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="F&amp;amp;O Project Invoice journal" vertex="1">
+          <mxGeometry height="30" width="160" x="-450" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-76" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-71" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-71" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Payment entry" vertex="1">
+          <mxGeometry height="30" width="160" x="-450" y="485" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-77" edge="1" parent="1" source="-yJ8oLdzEiCnCVGNIsYe-73" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="-yJ8oLdzEiCnCVGNIsYe-57">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-yJ8oLdzEiCnCVGNIsYe-73" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Non E-Invoice PO invoice" vertex="1">
+          <mxGeometry height="30" width="160" x="-450" y="550" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

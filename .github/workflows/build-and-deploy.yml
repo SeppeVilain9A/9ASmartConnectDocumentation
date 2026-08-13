@@ -1,0 +1,76 @@
+# ============================================================
+#  9A Smart Connect manual — GitHub Actions build.
+#  On every change to the wiki Markdown (/docs) or the build system
+#  (/build), regenerate the branded HTML (/site), commit it back to
+#  the repo, and publish it to GitHub Pages.
+#
+#  GitHub requires workflows to live in .github/workflows/ — see the
+#  setup guide in /github/README.md.
+# ============================================================
+name: Build & publish manual
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "build/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write # commit the regenerated site/ back
+  pages: write # deploy to GitHub Pages
+  id-token: write
+
+concurrency:
+  group: manual-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies (markdown-it)
+        run: npm ci --omit=dev
+
+      - name: Build manual (Markdown → HTML)
+        run: node build/build.mjs
+
+      # The [skip ci] tag + the site/** path exclusion above prevent a loop.
+      - name: Commit regenerated site back to Git
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site
+          if git diff --cached --quiet; then
+            echo "site/ is already up to date."
+          else
+            git commit -m "docs: rebuild Smart Connect manual site [skip ci]"
+            git push
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

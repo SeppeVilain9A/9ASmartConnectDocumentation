@@ -1,0 +1,12 @@
+# Normalise line endings; keep text as LF in the repo
+* text=auto eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+
+# Mark generated output so diffs/GitHub-style stats collapse it
+site/** linguist-generated=true
+build/assets/mermaid.min.js linguist-vendored=true

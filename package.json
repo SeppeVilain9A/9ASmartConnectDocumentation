@@ -1,0 +1,20 @@
+{
+  "name": "9a-smart-connect-wiki",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "9A Smart Connect manual — Azure DevOps code-wiki source (Markdown) and the static-HTML build that regenerates the branded single-page manual.",
+  "scripts": {
+    "build": "node build/build.mjs",
+    "migrate": "node build/migrate.mjs",
+    "clean": "node -e \"import('node:fs').then(f=>f.rmSync('site',{recursive:true,force:true}))\""
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.1",
+    "turndown": "^7.2.0",
+    "turndown-plugin-gfm": "^1.0.2"
+  }
+}

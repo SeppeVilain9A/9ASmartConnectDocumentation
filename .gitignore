@@ -1,0 +1,8 @@
+# Dependencies
+node_modules/
+
+# Build scratch (the published output in /site IS committed by the pipeline)
+*.log
+.DS_Store
+Thumbs.db
+npm-debug.log*

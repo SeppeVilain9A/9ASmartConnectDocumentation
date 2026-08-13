@@ -1,0 +1,51 @@
+{
+  "$schema": "./site.config.schema.json",
+  "lang": "en",
+  "themeDefault": "light",
+  "documentTitle": "9A Smart Connect — User & Technical Manual",
+  "metaDescription": "Functional and technical manual for 9A Smart Connect (Information Integration) for Microsoft Dynamics 365 Finance & Operations.",
+  "singleFileName": "9A Smart Connect Manual.html",
+
+  "brand": {
+    "logo": "assets/9a-logo.png",
+    "logoWhite": "assets/9a-logo-white.png",
+    "favicon": "assets/favicon.png",
+    "title": "9A Smart Connect",
+    "subtitle": "Information Integration"
+  },
+
+  "hero": {
+    "eyebrow": "User & Technical Manual",
+    "title": "9A Smart Connect",
+    "lead": "The information-integration framework that connects Microsoft Dynamics&nbsp;365 Finance &amp; Operations to the outside world — files, APIs, EDI, e-invoicing and cloud storage — through one consistent, configurable model.",
+    "meta": [
+      { "emoji": "📦", "label": "Module", "value": "9A Smart Connect" },
+      { "emoji": "🏷️", "label": "Object prefix", "value": "NAN" },
+      { "emoji": "🧩", "label": "Platform", "value": "D365 Finance & Operations" },
+      { "emoji": "🏔️", "label": "By", "value": "9Altitudes" }
+    ]
+  },
+
+  "quickLinks": [
+    { "icon": "info",    "title": "New here?",             "text": "Start with the introduction and core concepts.", "href": "#introduction" },
+    { "icon": "connect", "title": "Set up a connection",   "text": "Configure connectors to external systems.",      "href": "#connectors" },
+    { "icon": "process", "title": "Build a process",       "text": "Define processors that move your data.",         "href": "#processors" },
+    { "icon": "chart",   "title": "Understand the design", "text": "See how the building blocks fit together.",       "href": "#architecture" },
+    { "icon": "code",    "title": "Developer?",            "text": "Extend the framework with custom handlers.",     "href": "#extensibility" },
+    { "icon": "help",    "title": "Something wrong?",      "text": "Troubleshooting & frequently asked questions.",  "href": "#troubleshooting" }
+  ],
+
+  "groups": [
+    { "folder": "Getting-Started",               "label": "Getting started",             "collapsed": false },
+    { "folder": "Functional-Guide",              "label": "Functional guide",            "collapsed": false },
+    { "folder": "E-Invoicing-and-EDI",           "label": "E-invoicing & EDI",           "collapsed": false },
+    { "folder": "Handlers-and-Flows",            "label": "Handlers & flows",            "collapsed": false },
+    { "folder": "Field-and-Parameter-Reference", "label": "Field & parameter reference", "collapsed": false },
+    { "folder": "Technical-Reference",           "label": "Technical reference",         "collapsed": true },
+    { "folder": "Add-on-Modules",                "label": "Add-on modules",              "collapsed": true },
+    { "folder": "Reference",                     "label": "Reference",                   "collapsed": true }
+  ],
+
+  "footer": "© 9Altitudes — 9A Smart Connect. For internal and customer enablement use.",
+  "sidebarFoot": "<strong>9A Smart Connect</strong><br />Manual built from the wiki Markdown source.<br />Theme: 9Altitudes."
+}

@@ -1,0 +1,63 @@
+# ============================================================
+#  9A Smart Connect manual — CI build.
+#  On every change to the wiki Markdown (/docs) or the build system
+#  (/build), regenerate the branded HTML (/site) and commit it back
+#  to the repository, and publish it as a pipeline artifact.
+#
+#  The trigger EXCLUDES /site so the automated commit does not
+#  re-trigger the pipeline (belt-and-braces with the [skip ci] tag).
+# ============================================================
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - docs/*
+      - build/*
+      - package.json
+      - package-lock.json
+      - devops/azure-pipelines.yml
+    exclude:
+      - site/*
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self
+    persistCredentials: true   # allow the job to push the rebuilt site
+    fetchDepth: 0
+
+  - task: NodeTool@0
+    displayName: Install Node.js
+    inputs:
+      versionSpec: 20.x
+
+  - script: npm ci --omit=dev
+    displayName: Install dependencies (markdown-it)
+
+  - script: node build/build.mjs
+    displayName: Build manual (Markdown → HTML)
+
+  - script: |
+      set -euo pipefail
+      git config user.name  "Azure Pipelines"
+      git config user.email "azuredevops@9altitudes.com"
+      git add site
+      if git diff --cached --quiet; then
+        echo "site/ is already up to date — nothing to commit."
+      else
+        git commit -m "docs: rebuild Smart Connect manual site [skip ci]"
+        git push origin "HEAD:$(Build.SourceBranchName)"
+        echo "Committed regenerated site/ back to $(Build.SourceBranchName)."
+      fi
+    displayName: Commit regenerated site back to Git
+
+  - task: PublishPipelineArtifact@1
+    displayName: Publish HTML artifact
+    inputs:
+      targetPath: site
+      artifact: smart-connect-manual
