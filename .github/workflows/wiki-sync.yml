@@ -15,7 +15,9 @@ jobs:
           fetch-depth: 0
 
       - name: Checkout wiki
-        run: git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git wiki-clone
+        run: |
+          rm -rf wiki-clone
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git wiki-clone
 
       - uses: actions/setup-node@v4
         with:
