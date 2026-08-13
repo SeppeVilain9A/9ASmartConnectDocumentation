@@ -64,7 +64,7 @@ export function makeResolvers({ pathToId, slugToId }) {
   return { resolveLink, resolveImage };
 }
 
-function readOrder(folderAbs) {
+export function readOrder(folderAbs) {
   const orderFile = path.join(folderAbs, ".order");
   if (fs.existsSync(orderFile)) {
     return fs.readFileSync(orderFile, "utf8").split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
@@ -72,7 +72,7 @@ function readOrder(folderAbs) {
   return fs.readdirSync(folderAbs).filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, "")).sort();
 }
 
-function parsePage(raw, base) {
+export function parsePage(raw, base) {
   let text = raw.replace(/^\uFEFF/, "");
   let nav = null;
   let id = null;

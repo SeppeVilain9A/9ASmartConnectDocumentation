@@ -7,6 +7,7 @@
   "scripts": {
     "build": "node build/build.mjs",
     "migrate": "node build/migrate.mjs",
+    "publish:wiki": "node build/publish-wiki.mjs",
     "clean": "node -e \"import('node:fs').then(f=>f.rmSync('site',{recursive:true,force:true}))\""
   },
   "dependencies": {

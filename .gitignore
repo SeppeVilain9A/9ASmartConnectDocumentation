@@ -2,6 +2,7 @@
 node_modules/
 
 # Build scratch (the published output in /site IS committed by the pipeline)
+wiki-export/
 *.log
 .DS_Store
 Thumbs.db
