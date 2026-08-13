@@ -1,7 +1,7 @@
 <!-- nav: Placeholders | id: placeholders -->
 # Placeholders (regex value extraction)
 
-A **Placeholder** is a named regular expression that runs against a field of a queue message (usually the *Payload*) and stores the captured text under a reusable token. It is a *general* mechanism used across the whole framework — for example to supply the lookup value on a [Raptor](../Add-on-Modules/DMS-Document-capture.md) mapping, or to lift a reference out of an inbound file onto the queue record.
+A **Placeholder** is a named regular expression that runs against a field of a queue message (usually the *Payload*) and stores the captured text under a reusable token. It is a *general* mechanism used across the whole framework — for example to supply the lookup value on a [Raptor](../add-on-modules/dms-document-capture.md) mapping, or to lift a reference out of an inbound file onto the queue record.
 
 Maintain placeholders under *Setup > Placeholders*.
 

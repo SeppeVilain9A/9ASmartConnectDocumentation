@@ -120,7 +120,7 @@ How the secret fields (*Client secret*, *Connection string*, *Password*) behave 
 
 > **Warning: Mutually exclusive**
 >
-> *Use keyvault* and *Encrypt credentials* cannot both be on. Set them in [Parameters](Global-parameters.md); the connector form reads them in `init()` and shows either the Key Vault lookup or the direct input for every secret field.
+> *Use keyvault* and *Encrypt credentials* cannot both be on. Set them in [Parameters](global-parameters.md); the connector form reads them in `init()` and shows either the Key Vault lookup or the direct input for every secret field.
 
 ### Connector sub-tables
 

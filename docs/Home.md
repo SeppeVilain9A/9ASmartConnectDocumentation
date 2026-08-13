@@ -1,5 +1,5 @@
 <!-- nav: Home | id: home -->
-# 9A Smart Connect — User & Technical Manual
+# 9A Smart Connect — User & Technical Manual TEST
 
 Welcome to the **9A Smart Connect** manual. 9A Smart Connect is the information-integration
 framework that connects Microsoft Dynamics 365 Finance & Operations to the outside world —
@@ -13,78 +13,78 @@ files, APIs, EDI, e-invoicing and cloud storage — through one consistent, conf
 
 ### Getting started
 
-- [Introduction](Getting-Started/Introduction.md)
-- [Overview & design](Getting-Started/Overview-and-design.md)
-- [How it works](Getting-Started/How-it-works.md)
-- [Key concepts](Getting-Started/Key-concepts.md)
+- [Introduction](getting-started/introduction.md)
+- [Overview & design](getting-started/overview-and-design.md)
+- [How it works](getting-started/how-it-works.md)
+- [Key concepts](getting-started/key-concepts.md)
 
 ### Functional guide
 
-- [Menu & workspace](Functional-Guide/Menu-and-workspace.md)
-- [Connectors](Functional-Guide/Connectors.md)
-- [Processors](Functional-Guide/Processors.md)
-- [Processor groups](Functional-Guide/Processor-groups.md)
-- [Setup & parameters](Functional-Guide/Setup-and-parameters.md)
-- [Placeholders](Functional-Guide/Placeholders.md)
-- [Periodic tasks](Functional-Guide/Periodic-tasks.md)
-- [Queue, events & logs](Functional-Guide/Queue-events-and-logs.md)
-- [Data Management Framework](Functional-Guide/Data-Management-Framework.md)
-- [Reporting (ER & SSRS)](Functional-Guide/Reporting-ER-and-SSRS.md)
-- [Worked examples](Functional-Guide/Worked-examples.md)
-- [Azure storage guide](Functional-Guide/Azure-storage-guide.md)
+- [Menu & workspace](functional-guide/menu-and-workspace.md)
+- [Connectors](functional-guide/connectors.md)
+- [Processors](functional-guide/processors.md)
+- [Processor groups](functional-guide/processor-groups.md)
+- [Setup & parameters](functional-guide/setup-and-parameters.md)
+- [Placeholders](functional-guide/placeholders.md)
+- [Periodic tasks](functional-guide/periodic-tasks.md)
+- [Queue, events & logs](functional-guide/queue-events-and-logs.md)
+- [Data Management Framework](functional-guide/data-management-framework.md)
+- [Reporting (ER & SSRS)](functional-guide/reporting-er-and-ssrs.md)
+- [Worked examples](functional-guide/worked-examples.md)
+- [Azure storage guide](functional-guide/azure-storage-guide.md)
 
 ### E-invoicing & EDI
 
-- [E-invoicing overview](E-Invoicing-and-EDI/E-invoicing-overview.md)
-- [Belgium (Peppol)](E-Invoicing-and-EDI/Belgium-Peppol.md)
-- [France (MySupply)](E-Invoicing-and-EDI/France-MySupply.md)
-- [Purchase-order recognition](E-Invoicing-and-EDI/Purchase-order-recognition.md)
+- [E-invoicing overview](e-invoicing-and-edi/e-invoicing-overview.md)
+- [Belgium (Peppol)](e-invoicing-and-edi/belgium-peppol.md)
+- [France (MySupply)](e-invoicing-and-edi/france-mysupply.md)
+- [Purchase-order recognition](e-invoicing-and-edi/purchase-order-recognition.md)
 
 ### Handlers & flows
 
-- [Handler catalogue](Handlers-and-Flows/Handler-catalogue.md)
-- [Outbound handlers](Handlers-and-Flows/Outbound-handlers.md)
-- [Inbound handlers](Handlers-and-Flows/Inbound-handlers.md)
+- [Handler catalogue](handlers-and-flows/handler-catalogue.md)
+- [Outbound handlers](handlers-and-flows/outbound-handlers.md)
+- [Inbound handlers](handlers-and-flows/inbound-handlers.md)
 
 ### Field & parameter reference
 
-- [Connector fields](Field-and-Parameter-Reference/Connector-fields.md)
-- [Processor fields](Field-and-Parameter-Reference/Processor-fields.md)
-- [Events & triggers](Field-and-Parameter-Reference/Events-and-triggers.md)
-- [Queue fields](Field-and-Parameter-Reference/Queue-fields.md)
-- [Global parameters](Field-and-Parameter-Reference/Global-parameters.md)
-- [Sub-tables](Field-and-Parameter-Reference/Sub-tables.md)
+- [Connector fields](field-and-parameter-reference/connector-fields.md)
+- [Processor fields](field-and-parameter-reference/processor-fields.md)
+- [Events & triggers](field-and-parameter-reference/events-and-triggers.md)
+- [Queue fields](field-and-parameter-reference/queue-fields.md)
+- [Global parameters](field-and-parameter-reference/global-parameters.md)
+- [Sub-tables](field-and-parameter-reference/sub-tables.md)
 
 ### Technical reference
 
-- [Solution & module map](Technical-Reference/Solution-and-module-map.md)
-- [Component architecture](Technical-Reference/Component-architecture.md)
-- [Class architecture](Technical-Reference/Class-architecture.md)
-- [Outbound pipeline](Technical-Reference/Outbound-pipeline.md)
-- [Inbound pipeline](Technical-Reference/Inbound-pipeline.md)
-- [Queue & retry mechanics](Technical-Reference/Queue-and-retry-mechanics.md)
-- [Multithreading & work dispatch](Technical-Reference/Multithreading-and-work-dispatch.md)
-- [Process chaining (successors)](Technical-Reference/Process-chaining-successors.md)
-- [Filename handling](Technical-Reference/Filename-handling.md)
-- [Authentication & secrets](Technical-Reference/Authentication-and-secrets.md)
-- [Data model](Technical-Reference/Data-model.md)
-- [Enumerations reference](Technical-Reference/Enumerations-reference.md)
-- [Security roles](Technical-Reference/Security-roles.md)
-- [Extensibility & custom code](Technical-Reference/Extensibility-and-custom-code.md)
+- [Solution & module map](technical-reference/solution-and-module-map.md)
+- [Component architecture](technical-reference/component-architecture.md)
+- [Class architecture](technical-reference/class-architecture.md)
+- [Outbound pipeline](technical-reference/outbound-pipeline.md)
+- [Inbound pipeline](technical-reference/inbound-pipeline.md)
+- [Queue & retry mechanics](technical-reference/queue-and-retry-mechanics.md)
+- [Multithreading & work dispatch](technical-reference/multithreading-and-work-dispatch.md)
+- [Process chaining (successors)](technical-reference/process-chaining-successors.md)
+- [Filename handling](technical-reference/filename-handling.md)
+- [Authentication & secrets](technical-reference/authentication-and-secrets.md)
+- [Data model](technical-reference/data-model.md)
+- [Enumerations reference](technical-reference/enumerations-reference.md)
+- [Security roles](technical-reference/security-roles.md)
+- [Extensibility & custom code](technical-reference/extensibility-and-custom-code.md)
 
 ### Add-on modules
 
-- [DMS — Document capture](Add-on-Modules/DMS-Document-capture.md)
-- [EB — Electronic banking](Add-on-Modules/EB-Electronic-banking.md)
-- [PIW — Purchase invoice workflow](Add-on-Modules/PIW-Purchase-invoice-workflow.md)
-- [Pylades I/O (legacy)](Add-on-Modules/Pylades-I-O-legacy.md)
+- [DMS — Document capture](add-on-modules/dms-document-capture.md)
+- [EB — Electronic banking](add-on-modules/eb-electronic-banking.md)
+- [PIW — Purchase invoice workflow](add-on-modules/piw-purchase-invoice-workflow.md)
+- [Pylades I/O (legacy)](add-on-modules/pylades-i-o-legacy.md)
 
 ### Reference
 
-- [Connector reference](Reference/Connector-reference.md)
-- [Troubleshooting & FAQ](Reference/Troubleshooting-and-FAQ.md)
-- [Standard-F&O extensions](Reference/Standard-F-and-O-extensions.md)
-- [Data entities](Reference/Data-entities.md)
-- [Glossary](Reference/Glossary.md)
-- [Object index](Reference/Object-index.md)
-- [Document information](Reference/Document-information.md)
+- [Connector reference](reference/connector-reference.md)
+- [Troubleshooting & FAQ](reference/troubleshooting-and-faq.md)
+- [Standard-F&O extensions](reference/standard-f-and-o-extensions.md)
+- [Data entities](reference/data-entities.md)
+- [Glossary](reference/glossary.md)
+- [Object index](reference/object-index.md)
+- [Document information](reference/document-information.md)

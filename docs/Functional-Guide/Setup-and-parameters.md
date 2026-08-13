@@ -25,7 +25,7 @@ Several elements are configured once and apply across processes.
 
 > **Info: Parameters that unlock fields elsewhere**
 >
-> Several parameters are master switches — *Manually upload files*, *Enable successor processor*, *Enable processor multithreading* and *Use keyvault*. For every parameter and what each one reveals, see [Global parameters — complete reference](../Field-and-Parameter-Reference/Global-parameters.md).
+> Several parameters are master switches — *Manually upload files*, *Enable successor processor*, *Enable processor multithreading* and *Use keyvault*. For every parameter and what each one reveals, see [Global parameters — complete reference](../field-and-parameter-reference/global-parameters.md).
 
 ### Process configuration
 
@@ -43,4 +43,4 @@ Attributes let you attach custom key/value metadata to specific connectors and p
 
 ### Placeholders
 
-Placeholders are a general-purpose mechanism that extracts values from a message with a regular expression. They have their own section — see [Placeholders](Placeholders.md).
+Placeholders are a general-purpose mechanism that extracts values from a message with a regular expression. They have their own section — see [Placeholders](placeholders.md).

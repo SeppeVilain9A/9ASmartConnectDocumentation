@@ -58,7 +58,7 @@ The *Invoice type selection* toggle and its *Invoice types* picker (`NANProcesso
 
 ### What happens when it fires
 
-For each matched processor the service calls `NANProcessorEventTable::createEvent()`, writing one event row (source table + record + document Id, Status = *Waiting*). From there the document follows the normal path: if the processor uses a queue it is enqueued and run by the retry engine / batch; an event with *Skip queue execution* (or no queue) runs the handler and connector immediately. See [Queue reference](Queue-fields.md) and [Core concepts](../Getting-Started/Key-concepts.md).
+For each matched processor the service calls `NANProcessorEventTable::createEvent()`, writing one event row (source table + record + document Id, Status = *Waiting*). From there the document follows the normal path: if the processor uses a queue it is enqueued and run by the retry engine / batch; an event with *Skip queue execution* (or no queue) runs the handler and connector immediately. See [Queue reference](queue-fields.md) and [Core concepts](../getting-started/key-concepts.md).
 
 ```mermaid
 flowchart TB

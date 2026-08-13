@@ -22,7 +22,7 @@ It handles structured invoice / purchase-order import — UBL e-invoices, Tungst
 | Connector / retrieval settings | `NANExaConnectorRaptorTable`, `NANExaPurchFormatTable` |
 | Per-message state across steps | `NANQueueHandlerInDMSUblTable` |
 
-The archive-first pattern (see [E-invoicing — Belgium](../E-Invoicing-and-EDI/Belgium-Peppol.md)) links each archived document to the Smart Connect queue record by its unique id, and — after the invoice is created — tags them with the context of the Raptor *All invoices* record based on a template configured on the processor.
+The archive-first pattern (see [E-invoicing — Belgium](../e-invoicing-and-edi/belgium-peppol.md)) links each archived document to the Smart Connect queue record by its unique id, and — after the invoice is created — tags them with the context of the Raptor *All invoices* record based on a template configured on the processor.
 
 #### What it contributes
 
@@ -30,7 +30,7 @@ The archive-first pattern (see [E-invoicing — Belgium](../E-Invoicing-and-EDI/
 
 ### Raptor setup on the processor
 
-When a processor uses a **9A Raptor DWH** connector, the processor form gains a **9A Raptor DWH** tab and a **Raptor connector setup** button (next to the *Regex* button used for [PO recognition](../E-Invoicing-and-EDI/Purchase-order-recognition.md)).
+When a processor uses a **9A Raptor DWH** connector, the processor form gains a **9A Raptor DWH** tab and a **Raptor connector setup** button (next to the *Regex* button used for [PO recognition](../e-invoicing-and-edi/purchase-order-recognition.md)).
 
 ![Processor with the 9A Raptor DWH tab and archive settings](/.attachments/23_processor_raptor_tab.png)
 
@@ -45,7 +45,7 @@ The **Raptor connector setup** button opens a mapping form that tells Raptor *wh
 | --- | --- |
 | **Sorting** | Evaluation order of the rules. |
 | **Table name** / **Field name** | The target D365 table and key field to match (e.g. `custinvoicejour` / `InvoiceId`). |
-| **Value** | The value to match — usually a [placeholder](../Functional-Guide/Placeholders.md) such as `%InvoiceIdMYSUPPLY%` that is expanded from the payload. |
+| **Value** | The value to match — usually a [placeholder](../functional-guide/placeholders.md) such as `%InvoiceIdMYSUPPLY%` that is expanded from the payload. |
 | **Document template** | The Raptor document template used to tag/archive the document (e.g. `Templates\R2B\SalesInvoice`). |
 
 ![Raptor connector setup mapping form](/.attachments/22_raptor_setup.png)

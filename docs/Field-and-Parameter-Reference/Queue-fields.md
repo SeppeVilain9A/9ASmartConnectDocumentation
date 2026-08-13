@@ -38,7 +38,7 @@ The *Queue* holds every message a processor enqueues. It is where retries, manua
 
 > **Info: Manual upload → queue**
 >
-> The *Upload* buttons only appear after you switch on *Manually upload files* in [Parameters](Global-parameters.md). Uploading creates a queue record with Status = *Pending*, the file as the Payload and the filename set; the retry engine then picks it up like any other message — so a failed import can be retried without re-uploading.
+> The *Upload* buttons only appear after you switch on *Manually upload files* in [Parameters](global-parameters.md). Uploading creates a queue record with Status = *Pending*, the file as the Payload and the filename set; the retry engine then picks it up like any other message — so a failed import can be retried without re-uploading.
 
 ### Linked queue tables
 

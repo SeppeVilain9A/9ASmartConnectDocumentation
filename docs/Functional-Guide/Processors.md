@@ -9,7 +9,7 @@ The processor ties together the *data handler* (what shape the data takes), the 
 
 | Field | Meaning |
 | --- | --- |
-| **Processor Id** | The unique identifier for the processor. |
+| **Processor Id** | The unique identifier for the processor. Dit is opnieuw een test|
 | **Data handler** | The class that determines how the data is handled. Its name shows the direction, e.g. `NANHandlerOutER` = outbound Electronic Reporting. |
 | **Connector Id** | The connector the processor uses to get or send data. |
 | **Use queue** | Enqueue messages so that, on failure, the process can simply be retried. |
@@ -29,7 +29,7 @@ The processor ties together the *data handler* (what shape the data takes), the 
 
 > **Info: Every field, and why fields appear**
 >
-> This is the everyday view. For an exhaustive list of *every* processor field and a map of exactly which fields each toggle reveals (successors, multithreading, events, file share sort…), see [Processor — complete field reference](../Field-and-Parameter-Reference/Processor-fields.md).
+> This is the everyday view. For an exhaustive list of *every* processor field and a map of exactly which fields each toggle reveals (successors, multithreading, events, file share sort…), see [Processor — complete field reference](../field-and-parameter-reference/processor-fields.md).
 
 ### Processor types (triggers)
 
@@ -65,7 +65,7 @@ Creates events (e.g. from custom code) that are processed later in batch.
 4.  **Select the Connector Id** the processor should use.
 5.  **Fill in the Variables** (e.g. *Directory*, *Definition group*, *Table*) — these are required by the handler.
 6.  **Set behaviour** — *Use queue*, *Enable telemetry*, *Unique filename*, *Maximum retries*, group/order.
-7.  **Set Active = Yes** and **Save**. Run it now from [Run processors](Periodic-tasks.md) or wait for its trigger.
+7.  **Set Active = Yes** and **Save**. Run it now from [Run processors](periodic-tasks.md) or wait for its trigger.
 
 ![Processor definitions list in D365 F&O](/.attachments/06_processors_list.png)
 

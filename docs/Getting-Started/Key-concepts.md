@@ -1,7 +1,7 @@
 <!-- nav: Key concepts | id: concepts -->
 # Key concepts
 
-These terms appear throughout the manual and on screen. They are summarised here and expanded in the [Glossary](../Reference/Glossary.md).
+These terms appear throughout the manual and on screen. They are summarised here and expanded in the [Glossary](../reference/glossary.md).
 
 #### Connector
 

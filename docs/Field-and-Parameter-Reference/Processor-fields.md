@@ -45,7 +45,7 @@ The processor form is the most *adaptive* form in Smart Connect: most of its fie
 
 ### Form-changing parameters — what each toggle reveals
 
-These are the fields the question *"why did new fields just appear?"* is about. Each **driver** below, when set, shows or enables additional controls. Fields gated by a *global* parameter (in [Parameters](Global-parameters.md)) do not appear at all until that parameter is switched on.
+These are the fields the question *"why did new fields just appear?"* is about. Each **driver** below, when set, shows or enables additional controls. Fields gated by a *global* parameter (in [Parameters](global-parameters.md)) do not appear at all until that parameter is switched on.
 
 | Driver field (and state) | What appears / changes on the form | Gated by |
 | --- | --- | --- |
@@ -72,7 +72,7 @@ These are the fields the question *"why did new fields just appear?"* is about. 
 
 #### Successor processors — the revealed fields
 
-With *Enable successor processor* on (Parameters) and *Is successor processor* = Yes, the **Successor processes** group exposes: *Success processor Id*, *Error processor Id*, *Detailed successor flow* and *Overwrite Id of queue*. A success/error target must itself be marked *Is successor processor* and cannot be the processor itself (validated on save). Full mechanics: [Process chaining](../Technical-Reference/Process-chaining-successors.md).
+With *Enable successor processor* on (Parameters) and *Is successor processor* = Yes, the **Successor processes** group exposes: *Success processor Id*, *Error processor Id*, *Detailed successor flow* and *Overwrite Id of queue*. A success/error target must itself be marked *Is successor processor* and cannot be the processor itself (validated on save). Full mechanics: [Process chaining](../technical-reference/process-chaining-successors.md).
 
 #### Multithreading — the revealed fields
 
@@ -85,7 +85,7 @@ With *Enable processor multithreading* on (Parameters) and *Use multithreading* 
 | **Worker retry wait time** | Delay before a failed work item is retried. |
 | **Worker recover timeout time** | How long an item may stay *In processing* before it is treated as stale and recovered. |
 
-Full mechanics — dispatcher, work items, pessimistic claim: [Multithreading & work dispatch](../Technical-Reference/Multithreading-and-work-dispatch.md).
+Full mechanics — dispatcher, work items, pessimistic claim: [Multithreading & work dispatch](../technical-reference/multithreading-and-work-dispatch.md).
 
 ![Processor with Use multithreading = Yes revealing the worker tuning fields](/.attachments/17_processor_multithreading.png)
 
@@ -109,4 +109,4 @@ Full mechanics — dispatcher, work items, pessimistic claim: [Multithreading & 
 
 > **Info: When does an Event processor actually fire — and for which accounts?**
 >
-> The *Events* group here only *declares* the business process. For the full picture — every out-of-the-box trigger, the difference between *All accounts* and the *Business process config* table, and how invoice-type filtering works — see [Events & triggers — when a document fires](Events-and-triggers.md).
+> The *Events* group here only *declares* the business process. For the full picture — every out-of-the-box trigger, the difference between *All accounts* and the *Business process config* table, and how invoice-type filtering works — see [Events & triggers — when a document fires](events-and-triggers.md).

@@ -28,4 +28,4 @@ The smaller tables that hang off connectors and processors. Most are edited thro
 
 ### Processor log
 
-Every run writes to `NANProcessorLogTable`: the processor, log level (Info/Error), the message, the source table+record, the queue message Id, the DMF execution Id, the handler class and the filename/reference. It is the primary audit trail and the backing data for the [Logs](../Functional-Guide/Queue-events-and-logs.md) inquiry.
+Every run writes to `NANProcessorLogTable`: the processor, log level (Info/Error), the message, the source table+record, the queue message Id, the DMF execution Id, the handler class and the filename/reference. It is the primary audit trail and the backing data for the [Logs](../functional-guide/queue-events-and-logs.md) inquiry.

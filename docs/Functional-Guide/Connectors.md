@@ -7,7 +7,7 @@ For example, a connector is needed when you must transmit Electronic Reporting d
 
 > **Info: Looking for what each field does?**
 >
-> This page explains connectors *functionally*. For a field-by-field explanation — every connector field, and exactly which fields appear per *Type* and per *Authentication type* — jump to the [**complete connector field reference**](../Field-and-Parameter-Reference/Connector-fields.md).
+> This page explains connectors *functionally*. For a field-by-field explanation — every connector field, and exactly which fields appear per *Type* and per *Authentication type* — jump to the [**complete connector field reference**](../field-and-parameter-reference/connector-fields.md).
 
 ### Connector types
 
@@ -50,7 +50,7 @@ Supporting fields include *Audience*, *Grant type* (Client credentials, Authoriz
 
 > **Warning: Protect your secrets**
 >
-> Whenever possible, store sensitive values (Client ID, secret, connection string, password) in **Azure Key Vault** rather than plain-text fields. See [Parameters](Setup-and-parameters.md) and [Authentication & secrets](../Technical-Reference/Authentication-and-secrets.md).
+> Whenever possible, store sensitive values (Client ID, secret, connection string, password) in **Azure Key Vault** rather than plain-text fields. See [Parameters](setup-and-parameters.md) and [Authentication & secrets](../technical-reference/authentication-and-secrets.md).
 
 ### Create a connector — step by step
 
