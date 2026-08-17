@@ -34,7 +34,7 @@ The processor form is the most *adaptive* form in Smart Connect: most of its fie
 | **Detailed successor flow** | `DetailedSuccessorProcessorFlow` | Create a fresh queue record for the successor instead of passing the same one through. |
 | **Overwrite Id of queue** | `OverwriteIdOfQueue` | Successor inherits the parent's queue Id (default Yes). |
 | **Import two stage status** | `TwoStageStatus` | Two-stage DMF import (stage → process). Shown for DMF inbound handlers; auto-enables Use queue. |
-| **Skip queue execution** | `SkipQueueExecution` | Run an event directly even though Use queue is on. Shown for Event + Use queue. |
+| **Skip queue execution** | `SkipQueueExecution` | Execute a processor without sending out the message to the connector. The result is a record in the queue in status pending. |
 | **Add queue Id to resource Url** | `AddQueueIdToResourceUrl` | Append the queue Id to API calls for external tracking. Shown for API connectors. |
 | **Sort field / Sort order** | `FileShareSortField` / `FileShareSortOrder` | Order in which files are read from an Azure *file share* (Filename / Created / Last written; Asc/Desc). |
 | **Transfer e-invoice type** | `TransferEInvoiceType` | E-invoice standard for a periodic transfer: Standard, E-invoice or MySupply archive. |
