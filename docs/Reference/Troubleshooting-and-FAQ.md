@@ -11,7 +11,7 @@
 
 > **Info: I can't see information messages in the log**
 >
-> By default only errors are logged. Enable *Enable logging* in Parameters (or on the processor) to capture information messages while testing.
+> By default only errors are logged. Enable *Enable logging* on the processor to capture information messages while testing.
 
 ### Frequently asked questions
 
