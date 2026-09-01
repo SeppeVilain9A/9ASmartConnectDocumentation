@@ -12,7 +12,6 @@ Several elements are configured once and apply across processes.
 | **Use Azure Key Vault** | Switch credential fields (Client ID, Secret …) from plain-text entry to selections from the standard D365 F&O Key Vault setup. Recommended for production. |
 | **Full global error** | When *No*, only the error message is shown; when *Yes*, the full stack trace is displayed. |
 | **VAT / registration number search option** | Search by VAT number, by registration number, or both. |
-| **Enable logging** | By default only errors are logged; enable this to log all processors (useful when testing). |
 | **Log connector** | Write log files to an external application (e.g. Azure storage) using an existing connector. |
 
 > **Warning: Key Vault before go-live**

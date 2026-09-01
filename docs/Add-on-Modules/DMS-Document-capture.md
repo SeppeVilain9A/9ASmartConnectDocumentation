@@ -47,7 +47,6 @@ The **Raptor connector setup** button opens a mapping form that tells Raptor *wh
 | **Table name** / **Field name** | The target D365 table and key field to match (e.g. `custinvoicejour` / `InvoiceId`). |
 | **Value** | The value to match — usually a [placeholder](../functional-guide/placeholders.md) such as `%InvoiceIdMYSUPPLY%` that is expanded from the payload. |
 | **Document template** | The Raptor document template used to tag/archive the document (e.g. `Templates\R2B\SalesInvoice`). |
-| **File name override** / **File name** | Optional. Tick *File name override* to store the archived document under a custom **File name** pattern (placeholders supported) instead of the original filename. |
 
 ![Raptor connector setup mapping form](/.attachments/22_raptor_setup.png)
 
