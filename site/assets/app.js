@@ -5,8 +5,10 @@
     "use strict";
 
     /* ---------- Theme ---------- */
+    // localStorage can throw (e.g. file:// origin with storage disabled); never let that abort the script.
     var root = document.documentElement;
-    var stored = localStorage.getItem("sc-theme");
+    var stored = null;
+    try { stored = localStorage.getItem("sc-theme"); } catch (e) { /* ignore */ }
     if (stored) root.setAttribute("data-theme", stored);
     else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
         root.setAttribute("data-theme", "dark");
@@ -16,7 +18,7 @@
         var cur = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
         var next = cur === "dark" ? "light" : "dark";
         root.setAttribute("data-theme", next);
-        localStorage.setItem("sc-theme", next);
+        try { localStorage.setItem("sc-theme", next); } catch (e) { /* ignore */ }
     }
     var themeBtn = document.getElementById("themeToggle");
     if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
@@ -152,8 +154,15 @@
     function jumpTo(rec, terms) {
         clearHighlights();
         highlightIn(rec.el, terms);
-        var y = rec.el.getBoundingClientRect().top + window.scrollY - HEAD_OFFSET;
-        window.scrollTo({ top: y, behavior: "smooth" });
+        function targetY() { return rec.el.getBoundingClientRect().top + window.scrollY - HEAD_OFFSET; }
+        window.scrollTo({ top: targetY(), behavior: "smooth" });
+        // Async content (e.g. mermaid diagrams) can grow the page after the scroll starts,
+        // leaving us short of the match — re-align until the target is actually in place.
+        var tries = 0;
+        var iv = setInterval(function () {
+            if (Math.abs(rec.el.getBoundingClientRect().top - HEAD_OFFSET) <= 2 || ++tries > 8) { clearInterval(iv); return; }
+            window.scrollTo({ top: targetY(), behavior: "smooth" });
+        }, 250);
         rec.el.classList.add("sc-flash");
         setTimeout(function () { rec.el.classList.remove("sc-flash"); }, 2200);
         if (window.innerWidth <= 860) closeNav();
