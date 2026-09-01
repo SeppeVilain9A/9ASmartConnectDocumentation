@@ -1,0 +1,48 @@
+{
+  "//": "Config for the F&O code -> docs change tracker (build/lib/foscan.mjs + build/fo-sync.mjs).",
+  "//repoRoot": "All module roots are resolved relative to the workspace root (three levels above /build).",
+  "branch": "main",
+  "modules": [
+    { "id": "core", "label": "Smart Connect (core)", "root": "InputOutputFrameworkV2" },
+    { "id": "dms", "label": "DMS — Document capture", "root": "InputOutputFrameworkV2 DMS" },
+    { "id": "eb", "label": "EB — Electronic banking", "root": "InputOutputFrameworkV2 EB" },
+    { "id": "piw", "label": "PIW — Purchase invoice workflow", "root": "InputOutputFrameworkV2 PIW" },
+    { "id": "pylades", "label": "Pylades I/O (legacy)", "root": "Pyladesinputoutputframework" }
+  ],
+  "//ignoreObjectTypes": "Ax* folders whose changes are not documentation-relevant.",
+  "ignoreObjectTypes": ["AxReference"],
+  "//mapping": "Ordered rules. First match wins per object. `match` tests against `Type/Name` (e.g. 'AxClass/NANConnecterAPI'). Regexs are case-insensitive. `pages` are docs-relative paths reviewers/agents must update.",
+  "mapping": [
+    { "match": "^AxClass/NANConnecter", "pages": ["Functional-Guide/Connectors.md", "Field-and-Parameter-Reference/Connector-fields.md", "Reference/Connector-reference.md"] },
+    { "match": "^AxClass/NANHandlerOutEdi", "pages": ["Handlers-and-Flows/Handler-catalogue.md", "Handlers-and-Flows/Outbound-handlers.md", "E-Invoicing-and-EDI/E-invoicing-overview.md"] },
+    { "match": "^AxClass/NAN.*MySupply", "pages": ["E-Invoicing-and-EDI/France-MySupply.md", "Handlers-and-Flows/Handler-catalogue.md"] },
+    { "match": "^AxClass/NANHandlerOut", "pages": ["Handlers-and-Flows/Handler-catalogue.md", "Handlers-and-Flows/Outbound-handlers.md"] },
+    { "match": "^AxClass/NANHandlerIn", "pages": ["Handlers-and-Flows/Handler-catalogue.md", "Handlers-and-Flows/Inbound-handlers.md"] },
+    { "match": "^AxClass/NANHandler", "pages": ["Handlers-and-Flows/Handler-catalogue.md"] },
+    { "match": "^AxClass/NANOrchestrator", "pages": ["Technical-Reference/Class-architecture.md", "Technical-Reference/Multithreading-and-work-dispatch.md", "Technical-Reference/Queue-and-retry-mechanics.md"] },
+    { "match": "^AxClass/NANProcessorWork", "pages": ["Technical-Reference/Multithreading-and-work-dispatch.md", "Technical-Reference/Class-architecture.md"] },
+    { "match": "^AxClass/NANProcessor", "pages": ["Functional-Guide/Processors.md", "Technical-Reference/Outbound-pipeline.md", "Technical-Reference/Inbound-pipeline.md"] },
+    { "match": "^AxClass/NANOAuth", "pages": ["Technical-Reference/Authentication-and-secrets.md"] },
+    { "match": "^AxClass/NANPlaceholder", "pages": ["Functional-Guide/Placeholders.md"] },
+    { "match": "^AxClass/NAN(Queue|LogCleanUp)", "pages": ["Functional-Guide/Queue-events-and-logs.md", "Technical-Reference/Queue-and-retry-mechanics.md"] },
+    { "match": "^AxClass/NANTelemetry|^AxClass/NANAppInsights", "pages": ["Technical-Reference/Class-architecture.md"] },
+    { "match": "_NAN_Extension|_InputOutputFrameworkV2_Extension|_NAN_Form|_NAN_Table|_NAN_Events", "pages": ["Reference/Standard-F-and-O-extensions.md"] },
+    { "match": "^AxTable|^AxTableExtension|^AxEdt|^AxCompositeDataEntityView", "pages": ["Technical-Reference/Data-model.md"] },
+    { "match": "^AxEnum|^AxEnumExtension", "pages": ["Technical-Reference/Enumerations-reference.md"] },
+    { "match": "^AxForm|^AxFormExtension|^AxTile", "pages": ["Functional-Guide/Menu-and-workspace.md"] },
+    { "match": "^AxMenu", "pages": ["Functional-Guide/Menu-and-workspace.md"] },
+    { "match": "^AxSecurity", "pages": ["Technical-Reference/Security-roles.md"] },
+    { "match": "^AxDataEntityView|^AxDataEntityViewExtension", "pages": ["Reference/Data-entities.md"] },
+    { "match": "^AxService|^AxServiceGroup|^AxQuery", "pages": ["Technical-Reference/Class-architecture.md"] }
+  ],
+  "//modulePages": "Fallback page per module for objects that hit no mapping rule (mainly add-ons).",
+  "modulePages": {
+    "core": ["Reference/Object-index.md"],
+    "dms": ["Add-on-Modules/DMS-Document-capture.md"],
+    "eb": ["Add-on-Modules/EB-Electronic-banking.md"],
+    "piw": ["Add-on-Modules/PIW-Purchase-invoice-workflow.md"],
+    "pylades": ["Add-on-Modules/Pylades-I-O-legacy.md"]
+  },
+  "//objectIndex": "New NAN* AxClass/AxTable objects should also be surfaced in Reference/Object-index.md.",
+  "objectIndexPage": "Reference/Object-index.md"
+}

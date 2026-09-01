@@ -7,3 +7,6 @@ wiki-export/
 .DS_Store
 Thumbs.db
 npm-debug.log*
+
+# F&O change tracker: keep fo-baseline.json (the documented snapshot); the diff report is ephemeral
+build/fo-changes.json

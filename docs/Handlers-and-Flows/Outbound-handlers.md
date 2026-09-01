@@ -90,6 +90,16 @@ Binds `ERModelDefinitionDatabaseContext` to the source record (e.g. `CustInvoice
 
 **Variables:** `ERFormatMappingId` · **Connector:** any
 
+### NANHandlerOutGenerateER_BusinessDocumentSubmission
+
+*out · Event — Generate ER + register business-document submission*
+
+Extends `NANHandlerOutGenerateER`: after generating the Electronic Report for the invoice, it also registers the outcome in the standard D365 `BusinessDocumentSubmission` table (state *Completed*), so the posted `CustInvoiceJour` / `ProjInvoiceJour` is tracked as submitted from F&O's own e-invoicing status. Use it when the platform must know an e-invoice was sent (in addition to the transport itself).
+
+**Flow:** `Event (invoice)` → `NANHandlerOutGenerateER (runs ER)` → `Connector` → `register BusinessDocumentSubmission = Completed`
+
+**Variables:** `ERFormatMappingId` · **Connector:** any
+
 ### NANHandlerOutDmf
 
 *out · Event · loop — Data Management Framework export*

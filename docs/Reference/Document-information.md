@@ -12,6 +12,7 @@ This manual combines the official functional documentation with a source-code an
 | 30/07/2024 | Queueing | Additional queueing information. |
 | 20/02/2025 | Connectors | Additional connector options. |
 | 23/10/2025 | Ch. 2, 5 | New parameters, refreshed screenshots, extended descriptions. |
+| 01/09/2026 | EB, DMS, handlers | Cobase connector (OAuth2 + certificate, token cache, compression detection), ER + business-document-submission handler, project-invoice queue forms, Raptor filename override. |
 
 > **Info: Sources**
 >

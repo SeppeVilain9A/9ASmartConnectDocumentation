@@ -117,6 +117,7 @@
         <li><a href="#classes"><span class="dot"></span>Class architecture</a></li>
         <li><a href="#outbound"><span class="dot"></span>Outbound pipeline</a></li>
         <li><a href="#inbound"><span class="dot"></span>Inbound pipeline</a></li>
+        <li><a href="#custom-services"><span class="dot"></span>Custom services</a></li>
         <li><a href="#queue-tech"><span class="dot"></span>Queue &amp; retry mechanics</a></li>
         <li><a href="#multithreading"><span class="dot"></span>Multithreading &amp; work dispatch</a></li>
         <li><a href="#successors"><span class="dot"></span>Process chaining (successors)</a></li>
@@ -1470,6 +1471,11 @@
         <p>Unlike <code>NANHandlerOutER</code> (receives already-generated ER output), this handler <strong>actively runs the ER format itself</strong>. It is the engine behind MySupply and Peppol outbound e-invoicing — one processor per invoice type, each with its own ER format mapping.</p>
         <p><strong>Flow:</strong> <code>Event (source record)</code> → <code>NANHandlerOutGenerateER</code> → <code>ERObjectsFactory runs format → NANERFileDestinationInMemory</code> → <code>Connector</code></p>
         <p>Binds <code>ERModelDefinitionDatabaseContext</code> to the source record (e.g. <code>CustInvoiceJour</code>), runs via <code>ERFormatMappingRun</code> in-memory, and sets the result as payload.</p>
+        <p><strong>Variables:</strong> <code>ERFormatMappingId</code> · <strong>Connector:</strong> any</p>
+        <h3>NANHandlerOutGenerateER_BusinessDocumentSubmission</h3>
+        <p><em>out · Event — Generate ER + register business-document submission</em></p>
+        <p>Extends <code>NANHandlerOutGenerateER</code>: after generating the Electronic Report for the invoice, it also registers the outcome in the standard D365 <code>BusinessDocumentSubmission</code> table (state <em>Completed</em>), so the posted <code>CustInvoiceJour</code> / <code>ProjInvoiceJour</code> is tracked as submitted from F&amp;O's own e-invoicing status. Use it when the platform must know an e-invoice was sent (in addition to the transport itself).</p>
+        <p><strong>Flow:</strong> <code>Event (invoice)</code> → <code>NANHandlerOutGenerateER (runs ER)</code> → <code>Connector</code> → <code>register BusinessDocumentSubmission = Completed</code></p>
         <p><strong>Variables:</strong> <code>ERFormatMappingId</code> · <strong>Connector:</strong> any</p>
         <h3>NANHandlerOutDmf</h3>
         <p><em>out · Event · loop — Data Management Framework export</em></p>
@@ -3515,6 +3521,168 @@
 
       </section>
 
+      <section id="custom-services" class="doc">
+        <h2>Custom services</h2>
+        <p>Smart Connect ships <strong>one custom web service</strong> that lets an external system talk to the framework directly over D365's standard OData/JSON service endpoints — without a scheduled connector poll. It is the counterpart to the outbound <a href="#connectors">connectors</a>: where connectors <em>reach out</em>, this service lets the outside world <em>push in</em> and <em>report back</em>.</p>
+        <div class="table-wrap"><table>
+        <thead>
+        <tr>
+        <th>Object</th>
+        <th>Type</th>
+        <th>Purpose</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><code>NANProcessServiceGroup</code></td>
+        <td>Service group (<code>AutoDeploy = Yes</code>)</td>
+        <td>Publishes the service so it is reachable at <code>/api/services/…</code>.</td>
+        </tr>
+        <tr>
+        <td><code>NANProcessInService</code></td>
+        <td>Service (<code>ExternalName = NANProcessInService</code>)</td>
+        <td>Inbound process service exposing two operations.</td>
+        </tr>
+        </tbody>
+        </table></div>
+        <p>Because the group auto-deploys, both operations are callable as POST requests:</p>
+        <ul>
+        <li><code>POST /api/services/NANProcessServiceGroup/NANProcessInService/setQueue</code></li>
+        <li><code>POST /api/services/NANProcessServiceGroup/NANProcessInService/setQueueResponse</code></li>
+        </ul>
+        <div class="callout info"><svg class="co-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="co-body"><strong>Authentication</strong>
+        <p>The endpoints use standard D365 F&amp;O service authentication (Azure AD OAuth bearer token for the calling app registration). No Smart Connect-specific credential is involved on the inbound side.</p>
+        </div></div>
+        <h2><code>setQueue</code> — push a message into the queue</h2>
+        <p>An external middleware calls <code>setQueue</code> to drop a payload straight onto the Smart Connect <a href="#inquiries">queue</a>, exactly as an inbound connector would. Internally it runs <code>NANQueueTable::enqueue(...)</code> inside the requested company. This is the endpoint the Peppol middleware uses (see <a href="#einvoice-be">E-invoicing — Belgium</a>).</p>
+        <p><strong>Contract:</strong> <code>NANProcessInContract</code> (<code>[DataContract('ProcessRequest')]</code>)</p>
+        <div class="table-wrap"><table>
+        <thead>
+        <tr>
+        <th>Data member</th>
+        <th>Type</th>
+        <th>Purpose</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><code>ProcessId</code></td>
+        <td>NANProcessorId</td>
+        <td>Target processor that will handle the message.</td>
+        </tr>
+        <tr>
+        <td><code>Direction</code></td>
+        <td>NANProcessDirection</td>
+        <td><code>Inbound</code> / <code>Outbound</code>.</td>
+        </tr>
+        <tr>
+        <td><code>Company</code> / <code>DataAreaId</code></td>
+        <td>SelectableDataArea</td>
+        <td>Legal entity to enqueue in; defaults to the calling context company.</td>
+        </tr>
+        <tr>
+        <td><code>Payload</code></td>
+        <td>String</td>
+        <td>The message body (UTF-8).</td>
+        </tr>
+        <tr>
+        <td><code>Filename</code> / <code>FileType</code></td>
+        <td>Filename / FilenameType</td>
+        <td>Filename and extension recorded on the queue message.</td>
+        </tr>
+        <tr>
+        <td><code>ProcessRunId</code> / <code>Id</code></td>
+        <td>Guid</td>
+        <td>Correlation identifiers for the run and the individual message.</td>
+        </tr>
+        <tr>
+        <td><code>RefId</code></td>
+        <td>String</td>
+        <td>Optional external reference stored on the queue record.</td>
+        </tr>
+        <tr>
+        <td><code>Image</code> / <code>ImageFileName</code></td>
+        <td>String / Filename</td>
+        <td>Optional embedded image (e.g. a rendered document) and its filename.</td>
+        </tr>
+        </tbody>
+        </table></div>
+        <p><strong>Flow:</strong> <code>External system</code> → <code>POST …/setQueue</code> → <code>NANQueueTable::enqueue()</code> → <code>Queue</code> → processor</p>
+        <h2><code>setQueueResponse</code> — the deferred response</h2>
+        <p>This is the <strong>deferred (asynchronous) response</strong> operation. When a message is sent outbound and the receiving party only confirms the result <em>later</em>, that party (or the middleware) calls <code>setQueueResponse</code> with the original <code>QueueId</code> and the outcome. Smart Connect validates the queue still exists and the result type is known, then writes a <strong>deferred</strong> response onto <code>NANQueueResponseLogTable</code>.</p>
+        <p><strong>Contract:</strong> <code>NANQueueResponseLogContract</code> (<code>[DataContract]</code>)</p>
+        <div class="table-wrap"><table>
+        <thead>
+        <tr>
+        <th>Data member</th>
+        <th>Type</th>
+        <th>Purpose</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><code>QueueId</code></td>
+        <td>Guid</td>
+        <td>The queue message the response belongs to (must exist).</td>
+        </tr>
+        <tr>
+        <td><code>Company</code></td>
+        <td>SelectableDataArea</td>
+        <td>Legal entity of the original message; defaults to the calling context company.</td>
+        </tr>
+        <tr>
+        <td><code>Payload</code></td>
+        <td>String</td>
+        <td>The raw response content to log.</td>
+        </tr>
+        <tr>
+        <td><code>ResponseResult</code></td>
+        <td>NANResponseResult (string)</td>
+        <td>Result of processing; parsed to <code>NANResponseResultType</code> — <code>Processed</code>, <code>Error</code> or <code>Warning</code>. An unknown value is rejected (<code>validate()</code>).</td>
+        </tr>
+        </tbody>
+        </table></div>
+        <p>The result is stored via <code>NANQueueResponseLogTable::createLog(NANResponseType::Deferred, …)</code>, which is what distinguishes it from a <strong>direct</strong> response captured synchronously when a connector's <em>Enable response log</em> is on (see <a href="#queue-tech">Queue and retry mechanics</a>).</p>
+        <p><strong>Flow:</strong> <code>Receiving party</code> → <code>POST …/setQueueResponse</code> → <code>validate QueueId + result type</code> → <code>NANQueueResponseLogTable (Deferred)</code></p>
+        <h3>Direct vs deferred responses</h3>
+        <div class="table-wrap"><table>
+        <thead>
+        <tr>
+        <th></th>
+        <th>Direct</th>
+        <th>Deferred</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>Captured when</td>
+        <td>The connector call returns (synchronous), if <em>Enable response log</em> is set</td>
+        <td>Later, when the counterparty calls <code>setQueueResponse</code></td>
+        </tr>
+        <tr>
+        <td>Written by</td>
+        <td>The outbound pipeline</td>
+        <td><code>NANProcessInService.setQueueResponse</code></td>
+        </tr>
+        <tr>
+        <td>Response type</td>
+        <td><code>NANResponseType::Direct</code></td>
+        <td><code>NANResponseType::Deferred</code></td>
+        </tr>
+        <tr>
+        <td>Result values</td>
+        <td>—</td>
+        <td><code>NANResponseResultType</code>: Processed / Error / Warning</td>
+        </tr>
+        </tbody>
+        </table></div>
+        <p>Both are stored on <code>NANQueueResponseLogTable</code> and reviewable per message from the queue's <strong>Direct/deferred responses</strong> form; the queue row also exposes a <strong>Deferred response</strong> button once a deferred entry exists. See <a href="#ref-queue">Queue fields</a> and <a href="#inquiries">Queue events and logs</a>.</p>
+        <div class="callout info"><svg class="co-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="co-body"><strong>Extensible</strong>
+        <p><code>NANResponseType</code> and <code>NANResponseResultType</code> are both extensible enums — a customisation can add further response kinds or result types without changing the service contract.</p>
+        </div></div>
+
+      </section>
+
       <section id="queue-tech" class="doc">
         <h2>Queue &amp; retry mechanics</h2>
         <p>When <em>Use queue</em> is enabled the processor runs in two passes: pass 1 collects and enqueues messages (<code>NANQueueTable::enqueue()</code>); pass 2 consumes the queue and performs the actual send/import, so failures can be retried without regenerating the payload.</p>
@@ -3859,7 +4027,7 @@
         <tbody>
         <tr>
         <td><code>NANConnecterType</code></td>
-        <td>Url, Api, Blob, FileShare, Container, FTP, SFTP, AS2, Kofax (Tungsten), BabelwaySoap, UI, SharePoint, Attachment</td>
+        <td>Url, Api, Blob, FileShare, Container, FTP, SFTP, AS2, Kofax (Tungsten), BabelwaySoap, UI, SharePoint, Attachment · Raptor (DMS ext.), Cobase (EB ext.)</td>
         </tr>
         <tr>
         <td><code>NANAuthType</code></td>
@@ -3902,6 +4070,10 @@
         <td>Pending, Processed, Error, Cancelled</td>
         </tr>
         <tr>
+        <td><code>NANQueueSupportedForms</code></td>
+        <td>None, PurchTable, SalesTable, SalesTableListPage, ProjTable, CustTable, VendTable, CustInvoiceJournal, ProjInvoiceJournal (extensible)</td>
+        </tr>
+        <tr>
         <td><code>NANEventType</code></td>
         <td>None, Insert, Update, Delete</td>
         </tr>
@@ -3924,6 +4096,10 @@
         <tr>
         <td><code>NANCustVendRelType</code></td>
         <td>Cust, CustGroup, Vend, VendGroup</td>
+        </tr>
+        <tr>
+        <td><code>NANEBCompressionFormat</code> (EB)</td>
+        <td>Zip, GZip, Bin — detected compression of an inbound Cobase reporting archive</td>
         </tr>
         </tbody>
         </table></div>
@@ -4130,6 +4306,10 @@
         <td><strong>Document template</strong></td>
         <td>The Raptor document template used to tag/archive the document (e.g. <code>Templates\R2B\SalesInvoice</code>).</td>
         </tr>
+        <tr>
+        <td><strong>File name override</strong> / <strong>File name</strong></td>
+        <td>Optional. Tick <em>File name override</em> to store the archived document under a custom <strong>File name</strong> pattern (placeholders supported) instead of the original filename.</td>
+        </tr>
         </tbody>
         </table></div>
         <figure class="screenshot"><span class="shot-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Live screenshot</span><img class="zoomable" src="assets/screens/22_raptor_setup.png" alt="Raptor connector setup mapping form" loading="lazy" /><figcaption>Behind the Raptor connector setup button. Each row maps a target table/field and a document template; the Value column reuses the %InvoiceIdMYSUPPLY% placeholder to find the record to attach to.</figcaption></figure>
@@ -4143,11 +4323,59 @@
         <p>It integrates D365 cash management with ISO 20022 payment formats and bank reporting through the <strong>Cobase</strong> banking platform.</p>
         <h4>What it contributes</h4>
         <ul>
-        <li><strong>Cobase connector</strong> (<code>NANEBConnecterCobase</code>) — extends the API connector with X.509 certificate authentication (TLS 1.2).</li>
-        <li><strong>Inbound statements</strong> (<code>NANEBHandlerInCobaseReportFiles</code>) — processes ZIP-delivered bank statement XML (CAMT.053 / CAMT.052).</li>
+        <li><strong>Cobase connector</strong> (<code>NANEBConnecterCobase</code>) — a new connector type <code>Cobase</code> (enum <code>NANConnecterType::EBCobase</code>) that extends the API connector with OAuth2 client-credentials authentication secured by an X.509 client certificate.</li>
+        <li><strong>Inbound statements</strong> (<code>NANEBHandlerInCobaseReportFiles</code>) — retrieves compressed bank statement archives from Cobase and imports the extracted XML (CAMT.053 / CAMT.052).</li>
         <li><strong>Outbound payments</strong> — ISO 20022 PAIN.001 payment initiation files, with an upload log tracking status, reference and file size.</li>
         </ul>
-        <p><code>Cobase``ISO 20022``PAIN.001``CAMT.053 / .052``X.509</code></p>
+        <p><code>Cobase``ISO 20022``PAIN.001``CAMT.053 / .052``X.509``OAuth2</code></p>
+        <h3>Cobase connector setup</h3>
+        <p>Selecting connector type <strong>Cobase</strong> reveals a dedicated <strong>Cobase</strong> tab on the connector form with these fields:</p>
+        <div class="table-wrap"><table>
+        <thead>
+        <tr>
+        <th>Field</th>
+        <th>Table field</th>
+        <th>Purpose</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><strong>Authentication URL</strong></td>
+        <td><code>AuthUrl</code></td>
+        <td>OAuth2 token endpoint used to obtain the bearer token.</td>
+        </tr>
+        <tr>
+        <td><strong>Resource URL</strong></td>
+        <td><code>ResourceUrl</code></td>
+        <td>Base URL of the Cobase API.</td>
+        </tr>
+        <tr>
+        <td><strong>Client ID</strong></td>
+        <td><code>ClientId</code></td>
+        <td>OAuth2 client identifier.</td>
+        </tr>
+        <tr>
+        <td><strong>Client secret</strong></td>
+        <td><code>ClientSecret</code></td>
+        <td>OAuth2 client secret. When Key Vault is enabled (<code>NANParameterTable.UseKeyvault</code>), the field offers a Key Vault secret lookup instead of a plain-text value.</td>
+        </tr>
+        <tr>
+        <td><strong>Use token cache</strong></td>
+        <td><code>UseTokenCache</code></td>
+        <td>Cache the acquired bearer token and reuse it until shortly before it expires instead of authenticating on every call.</td>
+        </tr>
+        </tbody>
+        </table></div>
+        <p>A <strong>certificate</strong> button on the tab links to <code>NANConnecterCertificateTable</code>; the X.509 certificate it points to is used as the client certificate for the token request.</p>
+        <div class="callout info"><svg class="co-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="co-body"><strong>Credential storage</strong>
+        <p>The client secret can live in the D365 database or, when <em>Use Key Vault</em> is enabled on the Parameters form, in Azure Key Vault — the field then shows a secret lookup rather than plain text. See <a href="#credentials">Authentication and secrets</a>.</p>
+        </div></div>
+        <h3>Inbound bank reporting</h3>
+        <p><code>NANEBHandlerInCobaseReportFiles</code> downloads the reporting archive from the Cobase <code>reporting/download/statements</code> endpoint, detects and unpacks the compression format, extracts every <code>.xml</code> entry, and inserts each statement into the Pylades <code>PylEBResource</code> table for downstream bank-statement processing.</p>
+        <ul>
+        <li><strong>Compression auto-detection</strong> — the archive is recognised as <strong>Zip</strong>, <strong>GZip</strong> or <strong>Bin</strong> (uncompressed) and the detected value is stored on the queue record in <code>NANQueueTable.NANEBCompressionFormat</code> (enum <code>NANEBCompressionFormat</code>) for traceability.</li>
+        <li><strong>Import format &amp; bank variant</strong> — two handler parameters select the statement format (e.g. CAMT.053 / CAMT.052) and the bank variant. Their lookups are backed by the in-memory helper table <code>NANEBLookupTable</code>, populated from the Pylades import-format / bank-variant enums.</li>
+        </ul>
 
       </section>
 
@@ -4455,9 +4683,9 @@
         <td></td>
         </tr>
         <tr>
-        <td><code>CustInvoiceJournal</code>, <code>CustPackingSlipJournal</code>, <code>CustConfirmJournal</code>, <code>VendPurchOrderJournal</code>, <code>ProjInvoiceJournal</code></td>
+        <td><code>CustInvoiceJournal</code>, <code>CustPackingSlipJournal</code>, <code>CustConfirmJournal</code>, <code>VendPurchOrderJournal</code>, <code>ProjInvoiceJournal</code>, <code>ProjInvoiceJournalV2</code>, <code>ProjInvoiceListPage</code></td>
         <td>A <em>9A Smart Connect</em> button that creates/resends an event</td>
-        <td>Manually push (or re-push) a posted invoice / packing slip / confirmation through Smart Connect.</td>
+        <td>Manually push (or re-push) a posted invoice / packing slip / confirmation (including project invoices, journal V2 and the project invoice list page) through Smart Connect.</td>
         </tr>
         <tr>
         <td><strong>Print destination</strong></td>
@@ -4892,9 +5120,13 @@
         <h4>Engine &amp; orchestration</h4>
         <p><code>NANOrchestrator</code> <code>NANOrchestratorV2</code> <code>NANOrchestratorController</code> <code>NANProcessor</code> <code>NANProcessorIn</code> <code>NANProcessorOut</code> <code>NANProcessorWorkDispatcher</code> <code>NANProcessorWorkItemClaim</code></p>
         <h4>Connectors</h4>
-        <p><code>NANConnecter</code> <code>NANConnecterAPI</code> <code>NANConnecterAS2</code> <code>NANConnecterBlob</code> <code>NANConnecterFileShare</code> <code>NANConnecterSFTP</code> <code>NANOAuthToken</code></p>
+        <p><code>NANConnecter</code> <code>NANConnecterAPI</code> <code>NANConnecterAS2</code> <code>NANConnecterBlob</code> <code>NANConnecterFileShare</code> <code>NANConnecterSFTP</code> <code>NANOAuthToken</code> <code>NANExaConnecterRaptor</code> <code>NANEBConnecterCobase</code></p>
+        <h4>Add-on module objects</h4>
+        <p><code>NANEBConnecterCobase</code> <code>NANEBHandlerInCobaseReportFiles</code> <code>NANEBLookupTable</code> <code>NANHandlerInDMSUblV2</code> <code>NANHandlerInDMSMySupply</code> <code>NANHandlerOutGenerateER_BusinessDocumentSubmission</code></p>
         <h4>Key tables</h4>
         <p><code>NANParameterTable</code> <code>NANConnecterTable</code> <code>NANProcessorTable</code> <code>NANProcessorVariableTable</code> <code>NANQueueTable</code> <code>NANProcessorLogTable</code> <code>NANProcessorEventTable</code> <code>NANProcessGroupTable</code></p>
+        <h4>Custom services</h4>
+        <p><code>NANProcessServiceGroup</code> <code>NANProcessInService</code> <code>NANProcessInContract</code> <code>NANQueueResponseLogContract</code> <code>NANQueueResponseLogTable</code></p>
         <h4>Forms &amp; workspace</h4>
         <p><code>NANWorkspace</code> <code>NANConnecterTable</code> <code>NANProcessorTable</code> <code>NANQueueTable</code> <code>NANParameterTable</code></p>
 
@@ -4937,6 +5169,11 @@
         <td>23/10/2025</td>
         <td>Ch. 2, 5</td>
         <td>New parameters, refreshed screenshots, extended descriptions.</td>
+        </tr>
+        <tr>
+        <td>01/09/2026</td>
+        <td>EB, DMS, handlers</td>
+        <td>Cobase connector (OAuth2 + certificate, token cache, compression detection), ER + business-document-submission handler, project-invoice queue forms, Raptor filename override.</td>
         </tr>
         </tbody>
         </table></div>

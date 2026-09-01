@@ -20,7 +20,7 @@ These are the places a user actually meets Smart Connect on a standard F&O form 
 | **Purchase order**
 `PurchTable` | An *Integration* tab (export tracking) | Track the outbound export of the purchase order. |
 | **Posted journals**
-`CustInvoiceJournal`, `CustPackingSlipJournal`, `CustConfirmJournal`, `VendPurchOrderJournal`, `ProjInvoiceJournal` | A *9A Smart Connect* button that creates/resends an event | Manually push (or re-push) a posted invoice / packing slip / confirmation through Smart Connect. |
+`CustInvoiceJournal`, `CustPackingSlipJournal`, `CustConfirmJournal`, `VendPurchOrderJournal`, `ProjInvoiceJournal`, `ProjInvoiceJournalV2`, `ProjInvoiceListPage` | A *9A Smart Connect* button that creates/resends an event | Manually push (or re-push) a posted invoice / packing slip / confirmation (including project invoices, journal V2 and the project invoice list page) through Smart Connect. |
 | **Print destination**
 `SRSPrintDestinationSettings` | A *9A Smart Connect* tab with *Process* and *File format* | Route a printed / reported document straight to a Smart Connect processor (the “9A EDI” print medium). |
 | **Electronic Reporting**

@@ -9,6 +9,8 @@
     "migrate": "node build/migrate.mjs",
     "publish:wiki": "node build/publish-wiki.mjs",
     "sync:wiki": "node build/sync-wiki-to-docs.mjs",
+    "scan:fo": "node build/fo-sync.mjs",
+    "baseline:fo": "node build/fo-sync.mjs --baseline",
     "clean": "node -e \"import('node:fs').then(f=>f.rmSync('site',{recursive:true,force:true}))\""
   },
   "dependencies": {

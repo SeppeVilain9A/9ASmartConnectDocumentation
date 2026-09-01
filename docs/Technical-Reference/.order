@@ -3,6 +3,7 @@ Component-architecture
 Class-architecture
 Outbound-pipeline
 Inbound-pipeline
+Custom-services
 Queue-and-retry-mechanics
 Multithreading-and-work-dispatch
 Process-chaining-successors
