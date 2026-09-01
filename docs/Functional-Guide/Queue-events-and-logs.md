@@ -30,7 +30,7 @@ Events create a record for later processing (asynchronous). When the batch job r
 
 ### Logs
 
-All errors are logged automatically and can be queried here. If information logging is enabled in [Parameters](setup-and-parameters.md) (or on the processor), information messages appear here too.
+All errors are logged automatically and can be queried here. If information logging is enabled on the processor [Parameters](setup-and-parameters.md), information messages appear here too.
 
 ![9A Smart Connect Logs form](/.attachments/11_logs.png)
 
